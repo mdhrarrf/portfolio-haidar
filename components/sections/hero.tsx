@@ -28,11 +28,11 @@ export function HeroSection() {
       </div>
       
       <div className="container relative mx-auto px-6 md:px-12 z-10">
-        {/* 12-Column Grid (Golden Ratio Approximation: 7/5) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        {/* Exact Golden Ratio Grid (1.618 : 1) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.618fr_1fr] gap-12 lg:gap-12 items-center">
           
-          {/* Left Content (Text) - Spans 7 columns */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left w-full pt-10 lg:pt-0">
+          {/* Left Content (Text) - 61.8% */}
+          <div className="flex flex-col items-start text-left w-full pt-10 lg:pt-0">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -89,12 +89,12 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Content (Visual) - Spans 5 columns */}
+          {/* Right Content (Visual) - 38.2% */}
           <motion.div 
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 hidden lg:flex justify-end items-center relative w-full h-[600px]"
+            className="hidden lg:flex justify-end items-center relative w-full h-[600px]"
           >
             {/* Main Floating Glass Card */}
             <div className="relative w-full max-w-[400px] aspect-[4/5] animate-float z-20">

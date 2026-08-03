@@ -14,6 +14,14 @@ export const portfolioData = {
   },
   about: {
     title: "About Me",
+    profileImage: "/profile.jpg", // The user can replace this file in the public folder
+    biodata: [
+      { label: "Name", value: "M. Haidar Almer Rafif" },
+      { label: "Role", value: "Software Engineer Student" },
+      { label: "Age", value: "17 Years Old" }, // Adjust as needed
+      { label: "Location", value: "Cianjur, Indonesia" },
+      { label: "Email", value: "haidar@example.com" }
+    ],
     content: [
       "I am a 12th-grade student at SMKN 1 Cianjur, majoring in Software Engineering (PPLG). My focus is on web and mobile development.",
       "I have a strong interest in clean UI, scalable architecture, and building digital products that are actually useful. I believe that good design is as important as good code.",
