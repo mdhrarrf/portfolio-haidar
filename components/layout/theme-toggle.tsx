@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { flushSync } from "react-dom"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -9,11 +10,27 @@ import { Button } from "@/components/ui/button"
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme()
 
+  const handleToggle = () => {
+    const nextTheme = theme === "light" ? "dark" : "light"
+    
+    // Fallback if browser doesn't support View Transitions
+    if (!document.startViewTransition) {
+      setTheme(nextTheme)
+      return
+    }
+
+    document.startViewTransition(() => {
+      flushSync(() => {
+        setTheme(nextTheme)
+      })
+    })
+  }
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      onClick={handleToggle}
       className="rounded-full"
     >
       <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -22,3 +39,4 @@ export function ThemeToggle() {
     </Button>
   )
 }
+
