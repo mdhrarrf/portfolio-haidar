@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
+
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "./theme-toggle"
 import { portfolioData } from "@/data/portfolio"
@@ -12,6 +12,7 @@ const navItems = [
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Education", href: "#education" },
+  { name: "Certificates", href: "#certificates" },
   { name: "Contact", href: "#contact" },
 ]
 

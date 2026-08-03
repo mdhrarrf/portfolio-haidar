@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { portfolioData } from "@/data/portfolio"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Download } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 export function HeroSection() {
   return (

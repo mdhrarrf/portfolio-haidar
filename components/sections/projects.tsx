@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
-import Image from "next/image"
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -41,7 +41,7 @@ export function ProjectsSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto"
         >
-          {portfolioData.projects.map((project, index) => (
+          {portfolioData.projects.map((project) => (
             <motion.div key={project.id} variants={itemVariants}>
               <Card className="h-full flex flex-col overflow-hidden border-muted/50 bg-card/50 backdrop-blur group">
                 <div className="relative h-60 w-full overflow-hidden bg-muted">

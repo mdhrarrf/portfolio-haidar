@@ -103,6 +103,26 @@ export const portfolioData = {
       status: "12th Grade"
     }
   ],
+  certificates: [
+    {
+      title: "Dicoding: Belajar Dasar Pemrograman Web",
+      issuer: "Dicoding Indonesia",
+      date: "2023",
+      credentialUrl: "#" // Placeholder
+    },
+    {
+      title: "Dicoding: Belajar Membuat Aplikasi Flutter untuk Pemula",
+      issuer: "Dicoding Indonesia",
+      date: "2024",
+      credentialUrl: "#" // Placeholder
+    },
+    {
+      title: "Sertifikat Kompetensi Keahlian PPLG",
+      issuer: "BNSP / Sekolah",
+      date: "2024",
+      credentialUrl: "#" // Placeholder
+    }
+  ],
   contact: {
     email: "haidar@example.com", // Placeholder
     github: "https://github.com/haidar", // Placeholder

@@ -48,7 +48,7 @@ export function ContactSection() {
                   >
                     <CheckCircle2 className="w-16 h-16 text-primary" />
                     <h3 className="text-2xl font-bold">Message Sent!</h3>
-                    <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
+                    <p className="text-muted-foreground">Thank you for reaching out. I&apos;ll get back to you soon.</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
