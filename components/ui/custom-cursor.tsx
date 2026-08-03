@@ -15,29 +15,89 @@ export function CustomCursor() {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
 
+    const playSound = (type: "hover" | "click") => {
+      try {
+        const AudioContext = window.AudioContext || (window as any).webkitAudioContext
+        const win = window as any
+        if (!win.audioCtx) win.audioCtx = new AudioContext()
+        const ctx = win.audioCtx
+        
+        if (ctx.state === "suspended") {
+          ctx.resume().catch(() => {})
+        }
+        if (ctx.state === "suspended") return
+
+        const osc = ctx.createOscillator()
+        const gain = ctx.createGain()
+        osc.connect(gain)
+        gain.connect(ctx.destination)
+        const now = ctx.currentTime
+
+        if (type === "hover") {
+          // Subtle, modern tick
+          osc.type = "sine"
+          osc.frequency.setValueAtTime(300, now)
+          osc.frequency.exponentialRampToValueAtTime(150, now + 0.05)
+          gain.gain.setValueAtTime(0, now)
+          gain.gain.linearRampToValueAtTime(0.02, now + 0.01) // very quiet
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05)
+          osc.start(now)
+          osc.stop(now + 0.05)
+        } else if (type === "click") {
+          // Satisfying water-drop pop
+          osc.type = "sine"
+          osc.frequency.setValueAtTime(600, now)
+          osc.frequency.exponentialRampToValueAtTime(100, now + 0.1)
+          gain.gain.setValueAtTime(0, now)
+          gain.gain.linearRampToValueAtTime(0.05, now + 0.01)
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1)
+          osc.start(now)
+          osc.stop(now + 0.1)
+        }
+      } catch (e) {
+        // Ignore audio errors
+      }
+    }
+
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      // Add more tags or classes to detect interactive elements
       if (
         target.tagName.toLowerCase() === "a" ||
         target.tagName.toLowerCase() === "button" ||
         target.closest("a") ||
         target.closest("button")
       ) {
-        setIsHovering(true)
+        if (!isHovering) {
+          setIsHovering(true)
+          playSound("hover")
+        }
       } else {
         setIsHovering(false)
       }
     }
 
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (
+        target.tagName.toLowerCase() === "a" ||
+        target.tagName.toLowerCase() === "button" ||
+        target.closest("a") ||
+        target.closest("button")
+      ) {
+        playSound("click")
+      }
+    }
+
     window.addEventListener("mousemove", updateMousePosition)
     window.addEventListener("mouseover", handleMouseOver)
+    window.addEventListener("click", handleClick)
 
     return () => {
       window.removeEventListener("mousemove", updateMousePosition)
       window.removeEventListener("mouseover", handleMouseOver)
+      window.removeEventListener("click", handleClick)
     }
-  }, [])
+  }, [isHovering])
 
   // Do not render on mobile/touch devices
   if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
