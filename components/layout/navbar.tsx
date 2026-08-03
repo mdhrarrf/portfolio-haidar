@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "./theme-toggle"
 import { portfolioData } from "@/data/portfolio"
@@ -18,6 +18,7 @@ const navItems = [
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
+  const [hoveredPath, setHoveredPath] = React.useState<string | null>(null)
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -30,30 +31,45 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent",
+        "fixed top-0 w-full z-50 transition-all duration-500 border-b border-transparent",
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-border shadow-sm"
-          : "bg-transparent"
+          ? "bg-background/80 backdrop-blur-md border-border shadow-sm py-2"
+          : "bg-transparent py-4"
       )}
     >
-      <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-bold tracking-tighter text-xl">
-          {portfolioData.hero.branding}<span className="text-primary">.</span>
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+        <Link href="/" className="font-bold tracking-tighter text-xl z-10 relative group">
+          {portfolioData.hero.branding}
+          <span className="text-primary transition-all duration-300 group-hover:pl-1">.</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+        <nav className="hidden md:flex items-center gap-2 text-sm font-medium z-10">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              onMouseEnter={() => setHoveredPath(item.href)}
+              onMouseLeave={() => setHoveredPath(null)}
+              className="relative px-4 py-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
             >
               {item.name}
+              {item.href === hoveredPath && (
+                <motion.div
+                  className="absolute inset-0 bg-muted/80 rounded-md -z-10"
+                  layoutId="navbar-hover"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                />
+              )}
             </Link>
           ))}
-          <ThemeToggle />
+          <div className="ml-4">
+            <ThemeToggle />
+          </div>
         </nav>
-        {/* Mobile Nav Toggle can be added here if needed, keeping it minimal for now */}
-        <div className="md:hidden">
+        {/* Mobile Nav Toggle */}
+        <div className="md:hidden z-10">
            <ThemeToggle />
         </div>
       </div>

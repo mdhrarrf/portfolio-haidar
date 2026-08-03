@@ -43,23 +43,24 @@ export function ProjectsSection() {
         >
           {portfolioData.projects.map((project) => (
             <motion.div key={project.id} variants={itemVariants}>
-              <Card className="h-full flex flex-col overflow-hidden border-muted/50 bg-card/50 backdrop-blur group">
+              <Card className="h-full flex flex-col overflow-hidden border-muted/50 bg-card/50 backdrop-blur group relative transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-2">
                 <div className="relative h-60 w-full overflow-hidden bg-muted">
-                  {/* Placeholder for project image, using a subtle gradient or placeholder image */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-accent/10 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
-                    <span className="text-muted-foreground font-medium tracking-widest uppercase opacity-50">
-                      {project.title}
-                    </span>
+                  {/* Placeholder for project image, with subtle scale effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-muted-foreground/50 font-medium">Image Placeholder</span>
                   </div>
+                  {/* Image overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 
-                <CardHeader>
+                <CardHeader className="relative z-10">
                   <div className="flex justify-between items-start mb-2">
                     <Badge variant={project.status === "Completed" ? "default" : "secondary"}>
                       {project.status}
                     </Badge>
                   </div>
-                  <CardTitle className="text-2xl">{project.title}</CardTitle>
+                  <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
                   <CardDescription className="text-base mt-2">
                     {project.description}
                   </CardDescription>
