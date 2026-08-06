@@ -31,7 +31,7 @@ export function SkillsSection() {
   ]
 
   return (
-    <section id="skills" className="py-24 md:py-32">
+    <section id="skills" className="py-16 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <SectionHeading 
           title="Technical Arsenal" 
@@ -43,20 +43,20 @@ export function SkillsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto"
         >
           {skillCategories.map((category, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="h-full border-muted/50 bg-card/50 backdrop-blur hover:border-primary/20 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-lg">{category.title}</CardTitle>
+                <CardHeader className="p-4 md:p-6 pb-2 md:pb-4">
+                  <CardTitle className="text-sm md:text-lg">{category.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-wrap gap-2">
+                <CardContent className="flex flex-wrap gap-1.5 md:gap-2 p-4 md:p-6 pt-0 md:pt-0">
                   {category.data.map((skill, skillIndex) => (
                     <Badge 
                       key={skillIndex} 
                       variant="secondary"
-                      className="bg-secondary/50 hover:bg-secondary"
+                      className="bg-secondary/50 hover:bg-secondary text-[10px] md:text-xs px-2 py-0.5 md:py-1"
                     >
                       {skill.name}
                     </Badge>

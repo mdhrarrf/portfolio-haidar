@@ -8,7 +8,7 @@ import Image from "next/image"
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="about" className="py-16 md:py-32 relative overflow-hidden">
       {/* Decorative background element */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full filter blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       
@@ -16,7 +16,7 @@ export function AboutSection() {
         <SectionHeading title={portfolioData.about.title} />
         
         {/* Exact Golden Ratio Grid (1 : 1.618) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.618fr] gap-12 lg:gap-16 items-start mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.618fr] gap-8 lg:gap-16 items-start mt-8 lg:mt-12">
           
           {/* Left Column: Photo Area - 38.2% */}
           <motion.div 
@@ -26,7 +26,7 @@ export function AboutSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex justify-center lg:justify-start"
           >
-            <div className="relative w-full max-w-[400px] aspect-[4/5] group">
+            <div className="relative w-full max-w-[260px] md:max-w-[320px] lg:max-w-[400px] aspect-[4/5] group">
               {/* Photo Frame / Shadow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-primary/5 rounded-2xl transform rotate-3 scale-105 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110 -z-10" />
               
