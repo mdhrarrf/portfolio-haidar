@@ -75,8 +75,8 @@ export function AboutSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="flex flex-col justify-center"
           >
-            <h3 className="text-3xl font-bold mb-6 text-foreground">
-              Hello, I am <span className="text-primary">{portfolioData.hero.name.split(" ")[1]}</span>.
+            <h3 className="text-3xl font-medium font-serif mb-6 text-foreground">
+              Hello, I am <span className="text-primary italic">{portfolioData.hero.name.split(" ")[1]}</span>.
             </h3>
 
             {/* Paragraphs */}
