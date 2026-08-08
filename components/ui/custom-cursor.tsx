@@ -26,9 +26,10 @@ export function CustomCursor() {
     if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
       return
     }
-    
-    setIsVisible(true)
-
+    // Delay to avoid synchronous state update in effect warning
+    setTimeout(() => {
+      setIsVisible(true)
+    }, 0)
     const updateMousePosition = (e: MouseEvent) => {
       const offset = isHoveringRef.current ? 24 : 16
       cursorX.set(e.clientX - offset)
@@ -37,6 +38,7 @@ export function CustomCursor() {
 
     const playSound = (type: "hover" | "click") => {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const win = window as any
         const AudioContext = window.AudioContext || win.webkitAudioContext
         if (!win.audioCtx) win.audioCtx = new AudioContext()
@@ -72,7 +74,9 @@ export function CustomCursor() {
           osc.start(now)
           osc.stop(now + 0.1)
         }
-      } catch (e) {}
+      } catch {
+        // Ignore audio errors
+      }
     }
 
     const handleMouseOver = (e: MouseEvent) => {

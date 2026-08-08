@@ -3,7 +3,7 @@
 import { motion, type Variants } from "framer-motion"
 import { portfolioData } from "@/data/portfolio"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, MapPin } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 const textVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
