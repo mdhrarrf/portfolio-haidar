@@ -1,11 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import { portfolioData } from "@/data/portfolio"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, MapPin } from "lucide-react"
 
-const textVariants = {
+const textVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
